@@ -1,0 +1,53 @@
+
+@mixin center() {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  @include center;
+  flex-direction: column;
+
+  header{
+    @include center;
+    padding:8px;
+    width:100%;
+    a {
+      margin: 0 1rem;
+  
+      &:hover {
+        color:green;
+      }
+    }
+  }
+
+  main {
+    @include center;
+    border:8px solid orange;
+    padding: 8px;
+
+    form {
+      @include center;
+      flex-direction: column;
+      padding:8px;
+
+      input {
+        margin:8px;
+      }
+    }
+
+    .joke--list {
+      border:1px solid green;
+
+      .joke {
+        @include center;
+        border-bottom: 1px solid black;
+        margin:32px;
+        max-width:250px;
+        padding-bottom:8px;
+      }
+    }
+  }
+
+}
