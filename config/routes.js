@@ -8,8 +8,23 @@ module.exports = server => {
   server.get('/api/jokes', authenticate, getJokes);
 };
 
-function register(req, res) {
-  // implement user registration
+const db = require('../database/dbConfig.js');
+
+async function register(req, res) {
+  console.log(req);
+  if (!req.body.username || !req.body.password) {
+    res.status(400).json({error:'Please provide username/password'});
+  } else {
+    try {
+      const [newUser] = await db('users').insert(req.body);
+      if (newUser) {
+        res.status(201).json(newUser);
+      }
+    }
+    catch(err) {
+      res.status(500).json(err);
+    }
+  }
 }
 
 function login(req, res) {
